@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ohta's Portfolio – Projects</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="top-header">
+    <h1 class="name-title">Ohta Kamiya</h1>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="prof-exp.html">Professional Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/ohta-kamiya-56b70629a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <header class="projects-header">
+      <div>
+        <h2>Projects</h2>
+        <p>A small selection of things I’ve built. Click any card to view the repo or live demo.</p>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Project list">
+      <!-- Project cards (same structure as before) -->
+      <article class="card" aria-labelledby="p1-title">
+        <a class="thumb" href="#">
+          <img src="images/OpenPages.jpg" alt="OpenPages Photo" />
+        </a>
+        <div class="body">
+          <h3 id="p1-title" class="title">
+            OpenPages
+          </h3>
+          <p class="tagline">
+            A journaling web app that delivers daily writing prompts 
+            and supports full CRUD functionality for personal reflections.
+          </p>
+          <div class="links">
+            <a class="btn" href="#" target="_blank" rel="noopener">Live</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" aria-labelledby="p1-title">
+        <a class="thumb" href="#">
+          <img src="images/TaskManager.jpg" alt="TaskManagerSPA Photo" />
+        </a>
+        <div class="body">
+          <h3 id="p1-title" class="title">
+            Task Manager SPA
+          </h3>
+          <p class="tagline">
+            A React/MUI single-page app that lets users create, edit, and organize 
+            tasks with form validation and real-time notifications. 
+          </p>
+          <div class="links">
+            <a class="btn" href="https://stackblitz.com/edit/vitejs-vite-suvbtdme" target="_blank" rel="noopener">Live</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" aria-labelledby="p1-title">
+        <a class="thumb" href="#">
+          <img src="images/BootstrapBookingForm.jpg" alt="Bootstrap Photo" />
+        </a>
+        <div class="body">
+          <h3 id="p1-title" class="title">
+            Bootstrap Booking Form   
+          </h3>
+          <p class="tagline">
+            A dynamic form interface that streamlines scheduling by validating 
+            inputs and ensuring accuracy.       
+          </p>
+          <div class="links">
+            <a class="btn" href="https://codepen.io/Ohtakamiya7/pen/VYwjydK" target="_blank" rel="noopener">Live</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- Add more project cards as needed -->
+    </section>
+  </main>
+</body>
+</html>

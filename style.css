@@ -1,0 +1,149 @@
+body{
+    color: black; 
+    background-color: white;
+    font-family: "Libertinus Serif Display", serif;
+    background: var(--surface);   /* gives footer area a background */
+}
+
+.navbar {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #000; /* thin top border */
+    border-bottom: 1px solid #000;
+    font-size: x-large;
+}
+
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+}
+
+.paragraph{
+    width: 80%;
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.name-title{
+    font-size: 60px;
+    margin-bottom: 0px;
+    margin-top: 20px; 
+    text-align: center;
+}
+
+.tab-buttons{
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 13px;
+}
+
+.welcome{
+    width: 33%;
+    padding-top: 100px;
+    font-size: larger;
+    padding-left: 150px;
+    line-height: 1.6; 
+    font-size: 23px;
+}
+
+.format-paragraph{
+    padding: 30px 6vw;
+}
+
+.format-top{
+    display: flex;
+    align-items: flex-start;      /* vertical centering of text block with image */
+    gap: 0px;                /* spacing between text and image */
+    flex-wrap: nowrap;          /* nice on smaller screens */
+}
+
+.format-center{
+    display: flex;
+    align-items: center;      /* vertical centering of text block with image */
+    gap: 0px;                /* spacing between text and image */
+    flex-wrap: nowrap;  
+}
+
+.welcome-photo{
+    padding-left: 220px;
+    padding-top: 100px;
+    width: 320px;
+    height: auto;
+    border-radius: 8px;
+}
+.image-format{
+    max-width: 320px;   /* Set max size */
+    width: 100%;        /* Responsive */
+    height: auto; 
+    max-height: 420px;       /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: round corners */
+}
+
+.text-box {
+    flex: 1;             /* take remaining space */
+    max-width: none;    /* keeps lines readable */
+  }
+  
+  .text-box h1 {
+    margin: 0 0 0 16 px;
+  }
+
+  .lovechrome-img{
+    max-width: 450px;
+    height: auto; 
+    border-radius: 8px;
+  }
+
+  .projects-header{
+    text-align: center;
+  }
+
+  .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px }
+  @media (max-width: 900px){ .grid{ grid-template-columns:repeat(8,1fr) } }
+  @media (max-width: 600px){ .grid{ grid-template-columns:repeat(4,1fr) } }
+  
+  
+  .card {
+    grid-column: span 4;
+    background: var(--card); /* card container */
+    border: 1px solid var(--ring);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #cfd6e4;
+  }
+  
+  /* top (image area) */
+  .thumb {
+    aspect-ratio: 16 / 9;
+    background: #f0f2f8;
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid var(--ring);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* bottom (footer/text area) */
+  .body {
+    padding: 14px 14px 16px;
+    background: #f0f0f0;         /* CONTRAST background */
+    border-top: 1px solid var(--ring); /* separator line */
+  }
+  
