@@ -1,50 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohta's Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libertinus+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ohta's Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif+Display&display=swap" rel="stylesheet">  
-</head>
+  <body>
+    <header class="top-header">
+      <h1 class="name-title">Ohta Kamiya</h1>
 
-<body>
-  <header class = "top-header ">
-    <h1 class = "name-title" >Ohta Kamiya</h1>
+      <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="prof-exp.html">Professional Experience</a>
+        <a href="projects.html">Projects</a>
+        <a
+          href="https://www.linkedin.com/in/ohta-kamiya"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
-    <nav class="navbar">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Me</a>
-      <a href="prof-exp.html">Professional Experience</a>
-      <a href="projects.html">Projects</a> 
-      <a href="https://www.linkedin.com/in/ohta-kamiya-56b70629a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    
+    <div class="hero-section">
+      <div class="format-center">
+        <div class="welcome">
+          <div class="subtitle">
+            Computer Science Student & Software Engineer
+          </div>
+          <h1>Hi, I'm <span class="gradient-text">Ohta Kamiya</span></h1>
+          <p>
+            I'm a Junior at Case Western Reserve University majoring in Computer
+            Science with a minor in Finance. Passionate about building
+            innovative software solutions and solving real-world problems
+            through technology. Currently seeking software engineering
+            opportunities where I can contribute my technical skills and
+            collaborative mindset.
+          </p>
+          <div class="key-highlights">
+            <span class="highlight-badge">Computer Science</span>
+            <span class="highlight-badge">Full Stack Development</span>
+            <span class="highlight-badge">React & JavaScript</span>
+            <span class="highlight-badge">Java & Python</span>
+            <span class="highlight-badge">Shopify</span>
+            <span class="highlight-badge">Database Design</span>
+            <span class="highlight-badge">API Integration</span>
+          </div>
+          <div class="cta-buttons">
+            <a href="projects.html" class="btn">View My Work</a>
+            <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
 
-  </header>
-
-  <div class = "format-center">
-
-    <div class = "welcome">
-      <h1>Welcome!</h1>
-      <p>
-        Thanks for visiting my website! I’m excited to share my work, interests, and experiences with you. 
-        Feel free to explore the different sections to learn more about my background, projects, and goals.
-        Enjoy!
-      </p>
+        <div class="welcome-image-container">
+          <img
+            src="images/WebsitePhoto.png"
+            alt="Photo of Ohta Kamiya"
+            class="welcome-photo"
+          />
+        </div>
+      </div>
     </div>
 
-    <div>
-      <img src= "images/WebsitePhoto.png" alt="Photo of Ohta Kamiya" class="welcome-photo">
-    </div>
-
-  </div>
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
