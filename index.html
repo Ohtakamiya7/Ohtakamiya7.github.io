@@ -1,77 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ohta's Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libertinus+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ohta Kamiya — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Familjen+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0E0F0D;
+    --surface:#131410;
+    --surface-2:#171810;
+    --volt:#C6F24E;
+    --volt-dim:#243314;
+    --volt-faint:#1B2710;
+    --text:#F4F3EC;
+    --muted:#9A9C90;
+    --muted-2:#8A8C82;
+    --line:#26271F;
+    --line-soft:#1C1D16;
+    --display:"Bricolage Grotesque",sans-serif;
+    --body:"Familjen Grotesk",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--volt);color:var(--ink)}
 
-  <body>
-    <header class="top-header">
-      <h1 class="name-title">Ohta Kamiya</h1>
+  .pitch-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+  .pitch-bg svg{width:100%;height:100%}
 
-      <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Me</a>
-        <a href="prof-exp.html">Professional Experience</a>
-        <a href="projects.html">Projects</a>
-        <a
-          href="https://www.linkedin.com/in/ohta-kamiya"
-          target="_blank"
-          rel="noopener noreferrer"
-          >LinkedIn</a
-        >
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+  .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
 
-    <div class="hero-section">
-      <div class="format-center">
-        <div class="welcome">
-          <div class="subtitle">
-            Computer Science Student & Software Engineer
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(14,15,13,.72);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.5px}
+  .brand .dot{color:var(--volt)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-family:var(--mono);font-size:13px;color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--volt)}
+  .nav-status{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--volt)}
+  .blip{width:8px;height:8px;border-radius:50%;background:var(--volt);box-shadow:0 0 0 0 var(--volt);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(198,242,78,.5)}70%{box-shadow:0 0 0 7px rgba(198,242,78,0)}100%{box-shadow:0 0 0 0 rgba(198,242,78,0)}}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);font-size:20px;width:40px;height:40px;border-radius:8px;cursor:pointer}
+
+  .hero{position:relative;padding:90px 0 70px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:78vh}
+  .jersey-watermark{position:absolute;right:-3%;top:-6%;font-family:var(--display);font-weight:700;font-size:clamp(260px,40vw,560px);line-height:.8;color:var(--volt);opacity:.04;z-index:0;pointer-events:none;user-select:none}
+  .hero-left{position:relative;z-index:2}
+  .kicker{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--volt);margin-bottom:22px}
+  h1.name{font-family:var(--display);font-weight:700;font-size:clamp(76px,12vw,140px);line-height:.92;letter-spacing:-3px;margin-bottom:6px}
+  .accent-bar{width:120px;height:8px;background:var(--volt);margin:10px 0 26px}
+  .tagline{font-size:20px;color:#C2C3B8;max-width:32ch}
+  .subline{font-family:var(--mono);font-size:14px;color:var(--muted-2);margin-top:10px}
+  .cta-row{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:13px;padding:13px 22px;border-radius:30px;border:1px solid var(--volt);color:var(--volt);transition:all .2s;cursor:pointer;background:none}
+  .btn:hover{background:var(--volt);color:var(--ink)}
+  .btn.ghost{border-color:var(--line);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--text);background:transparent;color:var(--text)}
+  .avail-pill{display:inline-flex;align-items:center;gap:10px;margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--volt);border:1px solid var(--volt);border-radius:30px;padding:9px 16px}
+
+  .card-stage{display:flex;justify-content:center;perspective:1000px;position:relative;z-index:2}
+  .card{width:330px;background:var(--surface);border:1px solid var(--volt);border-radius:18px;padding:28px 26px 30px;transition:transform .15s ease-out;transform-style:preserve-3d;position:relative}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .ovr{font-family:var(--display);font-weight:700;font-size:52px;color:var(--volt);line-height:.9}
+  .pos{font-family:var(--mono);font-size:16px;letter-spacing:2px;color:var(--volt);margin-top:4px}
+  .num{font-family:var(--mono);font-size:13px;color:var(--muted-2);margin-top:8px}
+  .monogram{width:130px;height:130px;border-radius:14px;border:1px solid var(--volt);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:28px;color:var(--volt);overflow:hidden}
+  .monogram img{width:100%;height:100%;object-fit:cover}
+  .card hr{border:none;border-top:1px solid var(--line);margin:20px 0}
+  .card-name{font-family:var(--display);font-weight:700;font-size:34px;text-align:center;letter-spacing:-1px}
+  .card-underline{width:78px;height:4px;background:var(--volt);margin:8px auto 0}
+  .card-club{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center;margin-top:12px;letter-spacing:1px}
+  .stats{display:grid;grid-template-columns:1fr 1px 1fr;gap:0 18px;margin-top:8px}
+  .stats .divider{background:var(--line)}
+  .stat{display:flex;align-items:baseline;gap:10px;padding:9px 0}
+  .stat .val{font-family:var(--display);font-weight:700;font-size:22px;color:var(--volt);min-width:34px}
+  .stat .lab{font-family:var(--mono);font-size:13px;color:var(--text)}
+
+  section{padding:84px 0}
+  .sec-label{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--volt);margin-bottom:16px}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(34px,5vw,52px);line-height:1.02;letter-spacing:-1.5px;margin-bottom:26px}
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+  .about-grid p{font-size:18px;color:#C2C3B8;margin-bottom:18px}
+  .about-grid p b{color:var(--text);font-weight:600}
+  .facts{border:1px solid var(--line);border-radius:14px;padding:6px 22px}
+  .fact{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--line-soft);font-size:15px}
+  .fact:last-child{border-bottom:none}
+  .fact .k{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .fact .v{text-align:right}
+
+  .board-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:14px}
+  .board-hint{font-family:var(--mono);font-size:13px;color:var(--muted-2)}
+  .board-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:center}
+  .pitch{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .pitch svg{display:block;width:100%;height:auto}
+  .node-hit{cursor:pointer}
+  .node-disc{fill:var(--surface-2);stroke:var(--volt);stroke-width:1.5;transition:fill .2s}
+  .node-hit:hover .node-disc,.node-hit.active .node-disc{fill:var(--volt)}
+  .node-tag{font-family:var(--mono);font-size:13px;fill:var(--volt);text-anchor:middle;transition:fill .2s}
+  .node-hit:hover .node-tag,.node-hit.active .node-tag{fill:var(--ink)}
+  .node-label{font-family:var(--mono);font-size:12px;fill:var(--muted);text-anchor:middle}
+  .pass{stroke:var(--volt);stroke-width:1;opacity:.28;fill:none}
+
+  .detail{border:1px solid var(--volt);border-radius:16px;padding:28px 26px;min-height:320px}
+  .detail .pos-chip{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--volt);border-radius:6px;padding:3px 10px;letter-spacing:1px}
+  .detail h3{font-family:var(--display);font-weight:700;font-size:26px;margin:14px 0 4px;letter-spacing:-.5px}
+  .detail .role{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:16px}
+  .detail p{font-size:15.5px;color:#C2C3B8;margin-bottom:16px}
+  .detail-links{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .detail-links a{font-family:var(--mono);font-size:12px;padding:7px 14px;border-radius:20px;border:1px solid var(--volt);color:var(--volt);transition:all .2s}
+  .detail-links a:hover{background:var(--volt);color:var(--ink)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-family:var(--mono);font-size:12px;color:var(--volt);border:1px solid var(--volt-dim);border-radius:30px;padding:6px 12px}
+
+  .contact{text-align:center;border-top:1px solid var(--line);margin-top:30px}
+  .contact h2{margin-bottom:18px}
+  .contact .lead{font-size:19px;color:#C2C3B8;max-width:48ch;margin:0 auto 30px}
+  .links-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  footer{padding:40px 0 60px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted-2)}
+  .full-time{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;font-family:var(--mono);font-size:12px;color:var(--volt)}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:40px;padding:60px 0 50px;text-align:left}
+    .card-stage{justify-content:flex-start}
+    .about-grid,.board-grid{grid-template-columns:1fr;gap:28px}
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    .nav-links.open{display:flex;position:absolute;top:64px;right:28px;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 22px;gap:16px}
+    .jersey-watermark{font-size:clamp(220px,60vw,360px);right:-8%;top:auto;bottom:-4%;opacity:.05}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{transition:none;opacity:1;transform:none}
+    .blip{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="pitch-bg">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <line x1="720" y1="0" x2="720" y2="900" stroke="#1C2710" stroke-width="1"/>
+    <circle cx="720" cy="450" r="150" fill="none" stroke="#1C2710" stroke-width="1"/>
+    <circle cx="720" cy="450" r="4" fill="#1C2710"/>
+    <rect x="0" y="250" width="180" height="400" fill="none" stroke="#1C2710" stroke-width="1"/>
+    <rect x="1260" y="250" width="180" height="400" fill="none" stroke="#1C2710" stroke-width="1"/>
+    <rect x="0" y="350" width="70" height="200" fill="none" stroke="#1C2710" stroke-width="1"/>
+    <rect x="1370" y="350" width="70" height="200" fill="none" stroke="#1C2710" stroke-width="1"/>
+  </svg>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">ohta<span class="dot">.</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#contact">contact</a>
+      <span class="nav-status"><span class="blip"></span>open · 2027 full-time</span>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">≡</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="jersey-watermark" aria-hidden="true">10</div>
+    <div class="hero-left">
+      <div class="kicker reveal">// software engineer</div>
+      <h1 class="name reveal">Ohta</h1>
+      <div class="accent-bar reveal"></div>
+      <p class="tagline reveal">Backend &amp; AI engineer double-majoring in Computer Science and Finance at Case Western.</p>
+      <p class="subline reveal">Bilingual English / Japanese · varsity soccer · center mid</p>
+      <div class="cta-row reveal">
+        <a class="btn" href="#work">view the lineup</a>
+        <a class="btn ghost" href="#contact">get in touch</a>
+        <a class="btn ghost" href="Ohta_Resume.pdf" target="_blank" rel="noopener">resume</a>
+      </div>
+      <div class="avail-pill reveal"><span class="blip"></span>open · 2027 full-time</div>
+    </div>
+
+    <div class="card-stage reveal">
+      <div class="card" id="playerCard">
+        <div class="card-top">
+          <div>
+            <div class="ovr" data-count="88">88</div>
+            <div class="pos">CM</div>
+            <div class="num">NO. 10</div>
           </div>
-          <h1>Hi, I'm <span class="gradient-text">Ohta Kamiya</span></h1>
-          <p>
-            I'm a Junior at Case Western Reserve University majoring in Computer
-            Science with a minor in Finance. Passionate about building
-            innovative software solutions and solving real-world problems
-            through technology. Currently seeking software engineering
-            opportunities where I can contribute my technical skills and
-            collaborative mindset.
-          </p>
-          <div class="key-highlights">
-            <span class="highlight-badge">Computer Science</span>
-            <span class="highlight-badge">Full Stack Development</span>
-            <span class="highlight-badge">React & JavaScript</span>
-            <span class="highlight-badge">Java & Python</span>
-            <span class="highlight-badge">Shopify</span>
-            <span class="highlight-badge">Database Design</span>
-            <span class="highlight-badge">API Integration</span>
-          </div>
-          <div class="cta-buttons">
-            <a href="projects.html" class="btn">View My Work</a>
-            <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+          <div class="monogram">
+            <img src="images/FinalHeadshot.png" alt="Ohta Kamiya" />
           </div>
         </div>
-
-        <div class="welcome-image-container">
-          <img
-            src="images/FinalHeadshot.png"
-            alt="Photo of Ohta Kamiya"
-            class="welcome-photo"
-          />
+        <hr/>
+        <div class="card-name">Ohta Kamiya</div>
+        <div class="card-underline"></div>
+        <div class="card-club">CWRU · English / Japanese</div>
+        <hr/>
+        <div class="stats">
+          <div>
+            <div class="stat"><span class="val" data-count="90">90</span><span class="lab">BCK</span></div>
+            <div class="stat"><span class="val" data-count="88">88</span><span class="lab">DAT</span></div>
+            <div class="stat"><span class="val" data-count="84">84</span><span class="lab">FIN</span></div>
+          </div>
+          <div class="divider"></div>
+          <div>
+            <div class="stat"><span class="val" data-count="86">86</span><span class="lab">AI/ML</span></div>
+            <div class="stat"><span class="val" data-count="80">80</span><span class="lab">CLD</span></div>
+            <div class="stat"><span class="val" data-count="78">78</span><span class="lab">FE</span></div>
+          </div>
         </div>
       </div>
     </div>
+  </header>
 
-    <script src="script.js"></script>
-  </body>
+  <section id="about">
+    <div class="sec-label reveal">// about</div>
+    <h2 class="reveal">The player profile.</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a rising senior at <b>Case Western Reserve University</b> majoring in <b>Computer Science and Finance</b>, and a varsity center midfielder for the men's soccer team.</p>
+        <p>I build <b>backend and AI systems</b> and enjoy workin in team environments where my work actually matters.</p>
+        <p>I grew up in Torrance, CA as a first-generation Japanese American. Right now I'm building an AI document-intelligence pipeline through a <b>Pfizer externship</b> and working toward my <b>AWS Solutions Architect</b> cert.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><span class="k">school</span><span class="v">CWRU · CS + Finance</span></div>
+        <div class="fact"><span class="k">grad</span><span class="v">May 2027</span></div>
+        <div class="fact"><span class="k">languages</span><span class="v">English / Japanese</span></div>
+        <div class="fact"><span class="k">focus</span><span class="v">Backend · AI · Data</span></div>
+        <div class="fact"><span class="k">status</span><span class="v">Open · 2027 Full-time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="board-head">
+      <div>
+        <div class="sec-label reveal">// the lineup</div>
+        <h2 class="reveal">Projects, in formation.</h2>
+      </div>
+      <div class="board-hint reveal">tap a player to scout the project</div>
+    </div>
+    <div class="board-grid">
+      <div class="pitch reveal">
+        <svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" aria-label="Projects laid out as players on a soccer pitch">
+          <line x1="500" y1="20" x2="500" y2="540" stroke="#26271F" stroke-width="1"/>
+          <circle cx="500" cy="280" r="90" fill="none" stroke="#26271F" stroke-width="1"/>
+          <rect x="20" y="160" width="120" height="240" fill="none" stroke="#26271F" stroke-width="1"/>
+          <rect x="860" y="160" width="120" height="240" fill="none" stroke="#26271F" stroke-width="1"/>
+          <rect x="20" y="20" width="960" height="520" rx="10" fill="none" stroke="#26271F" stroke-width="1"/>
+
+          <g id="passes">
+            <line class="pass" x1="120" y1="280" x2="340" y2="150"/>
+            <line class="pass" x1="120" y1="280" x2="340" y2="410"/>
+            <line class="pass" x1="340" y1="150" x2="340" y2="410"/>
+            <line class="pass" x1="340" y1="150" x2="610" y2="165"/>
+            <line class="pass" x1="340" y1="410" x2="610" y2="395"/>
+            <line class="pass" x1="610" y1="165" x2="610" y2="395"/>
+            <line class="pass" x1="610" y1="165" x2="860" y2="280"/>
+            <line class="pass" x1="610" y1="395" x2="860" y2="280"/>
+          </g>
+
+          <g class="node-hit" data-id="lovechrome" transform="translate(120,280)">
+            <circle class="node-disc" r="30"/><text class="node-tag" y="5">CDM</text>
+            <text class="node-label" y="52">LOVECHROME</text>
+          </g>
+          <g class="node-hit" data-id="safety" transform="translate(340,150)">
+            <circle class="node-disc" r="30"/><text class="node-tag" y="5">CM</text>
+            <text class="node-label" y="52">LLM Safety</text>
+          </g>
+          <g class="node-hit" data-id="nfl" transform="translate(340,410)">
+            <circle class="node-disc" r="30"/><text class="node-tag" y="5">CM</text>
+            <text class="node-label" y="52">NFL Predictor</text>
+          </g>
+          <g class="node-hit" data-id="plapi" transform="translate(610,165)">
+            <circle class="node-disc" r="30"/><text class="node-tag" y="5">LW</text>
+            <text class="node-label" y="52">PL Stats API</text>
+          </g>
+          <g class="node-hit" data-id="openpages" transform="translate(610,395)">
+            <circle class="node-disc" r="30"/><text class="node-tag" y="5">RW</text>
+            <text class="node-label" y="52">OpenPages</text>
+          </g>
+          <g class="node-hit active" data-id="pfizer" transform="translate(860,280)">
+            <circle class="node-disc" r="30"/><text class="node-tag" y="5">ST</text>
+            <text class="node-label" y="52">Pfizer</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="detail reveal" id="detail"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="full-time"><span class="blip"></span>open to 2027 full-time roles</div>
+    <h2 class="reveal">Let's connect.</h2>
+    <p class="lead reveal">Building backend and AI systems, looking for a team where I can ship something that matters. Reach out and I'll get back within a day or two.</p>
+    <div class="links-row reveal">
+      <a class="btn" href="mailto:ohtakamiya7@gmail.com?subject=Hello%20Ohta">email</a>
+      <a class="btn ghost" href="https://github.com/Ohtakamiya7" target="_blank" rel="noopener">github</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/ohta-kamiya-56b70629a/" target="_blank" rel="noopener">linkedin</a>
+      <a class="btn ghost" href="Ohta_Resume.pdf" target="_blank" rel="noopener">resume</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>designed &amp; built by Ohta Kamiya · ink &amp; volt · 2026</footer>
+
+<script>
+  const projects = {
+    lovechrome:{pos:"CDM",name:"LOVECHROME USA",role:"IT Intern · luxury comb brand · Summer 2025",
+      desc:"Led the transition from Amazon-based fulfillment to self-fulfillment, automating cross-platform e-commerce workflows that reduced manual work by 20+ hours per month and improved order processing efficiency by 50%.",
+      tags:["Python","Shopify","Inventory","Barcode","Automation"],
+      links:[]},
+    safety:{pos:"Cm",name:"CWRU LLM Safety Research",role:"Research Assistant · model evaluation",
+      desc:"Supported research on the safety of AI-generated code by analyzing associated risks and helping evaluate failure patterns in model-generated outputs.",
+      tags:["Python","LLMs","Evaluation","Annotation"],
+      links:[]},
+    nfl:{pos:"CM",name:"NFL Game Predictor",role:"Personal project · sports analytics",
+      desc:"A logistic-regression model predicting NFL game outcomes, reaching 68% accuracy across 1,680 games. A web app where my data interest meets the sport.",
+      tags:["Python","scikit-learn","Pandas","Railway"],
+      links:[
+        {label:"Live",href:"https://nfl-predictor-production.up.railway.app"},
+        {label:"GitHub",href:"https://github.com/Ohtakamiya7/NFL-predictor"}
+      ]},
+    plapi:{pos:"LW",name:"Premier League Stats API",role:"Personal project · backend",
+      desc:"A REST API serving Premier League statistics, built to sharpen my backend design and Java/Spring.",
+      tags:["Java","Spring Boot","REST"],
+      links:[]},
+    openpages:{pos:"RW",name:"OpenPages",role:"Personal project · full stack",
+      desc:"A journaling web app that shows daily writing prompts and supports full CRUD on personal reflections.",
+      tags:["React","Node","Full stack"],
+      links:[
+        {label:"Live",href:"https://openpages.onrender.com/"},
+        {label:"GitHub",href:"https://github.com/Ohtakamiya7/OpenPages"}
+      ]},
+    pfizer:{pos:"ST",name:"Pfizer Externship — Document Intelligence",role:"AI Extern · in progress",
+      desc:"Building an AI pipeline that reads messy clinical supply documents: OCR to pull text from scanned PDFs, structured field extraction, and a RAG search system with a chatbot interface. A proof-of-concept to show where AI can cut manual document review.",
+      tags:["Python","OCR","LlamaIndex","RAG"],
+      links:[]}
+  };
+
+  const detail = document.getElementById('detail');
+  function render(id){
+    const p = projects[id];
+    const linksHTML = p.links && p.links.length
+      ? '<div class="detail-links">'+p.links.map(l=>'<a href="'+l.href+'" target="_blank" rel="noopener">'+l.label+'</a>').join('')+'</div>'
+      : '';
+    detail.innerHTML =
+      '<span class="pos-chip">'+p.pos+'</span>'+
+      '<h3>'+p.name+'</h3>'+
+      '<div class="role">'+p.role+'</div>'+
+      '<p>'+p.desc+'</p>'+
+      linksHTML+
+      '<div class="tags">'+p.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div>';
+  }
+  document.querySelectorAll('.node-hit').forEach(n=>{
+    n.addEventListener('click',()=>{
+      document.querySelectorAll('.node-hit').forEach(x=>x.classList.remove('active'));
+      n.classList.add('active');
+      render(n.dataset.id);
+    });
+  });
+  render('pfizer');
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  let counted = false;
+  const card = document.getElementById('playerCard');
+  const cardIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !counted){
+        counted = true;
+        card.querySelectorAll('[data-count]').forEach(el=>{
+          const target = +el.dataset.count; let cur = 0;
+          const step = Math.max(1, Math.round(target/28));
+          const tick = ()=>{ cur = Math.min(target, cur+step); el.textContent = cur; if(cur<target) requestAnimationFrame(tick); };
+          el.textContent = '0'; requestAnimationFrame(tick);
+        });
+      }
+    });
+  },{threshold:.4});
+  cardIO.observe(card);
+
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!reduce){
+    card.addEventListener('mousemove',(e)=>{
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left)/r.width - .5;
+      const py = (e.clientY - r.top)/r.height - .5;
+      card.style.transform = 'rotateY('+(px*8)+'deg) rotateX('+(-py*8)+'deg)';
+    });
+    card.addEventListener('mouseleave',()=>{ card.style.transform='none'; });
+  }
+</script>
+</body>
 </html>
